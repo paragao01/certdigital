@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- ===================================================================== -->
+<!--                                                                       -->
+<!--  JBoss Server Configuration                                           -->
+<!--                                                                       -->
+<!-- ===================================================================== -->
+
+<!-- $Id: db2-ds.xml,v 1.1.2.1 2003/09/05 16:38:24 patriot1burke Exp $ -->
+
+
+<datasources>
+  <local-tx-datasource>
+    <jndi-name>jdbc/GARANTIADB</jndi-name>
+    <connection-url>jdbc:as400://172.31.1.24</connection-url>
+    <driver-class>com.ibm.as400.access.AS400JDBCDriver</driver-class>
+    <user-name>tempo</user-name>
+    <password>agza15k0</password>
+    <min-pool-size>5</min-pool-size>
+        <!-- sql to call when connection is created
+        <new-connection-sql>some arbitrary sql</new-connection-sql>
+        -->
+
+        <!-- sql to call on an existing pooled connection when it is obtained from pool 
+        <check-valid-connection-sql>some arbitrary sql</check-valid-connection-sql>
+        -->
+
+  </local-tx-datasource>
+
+</datasources>

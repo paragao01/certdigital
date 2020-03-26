@@ -1,0 +1,50 @@
+<%@ page import="br.certdigital.vo.OperadorVO"%>
+<%@ page import="br.certdigital.shared.util.GlobalConstants"%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>CertDigital</title>
+<link href="_css/cdlrio.css" rel="stylesheet" type="text/css">
+<link href="_css/cdlrioStilo.css" rel="stylesheet" type="text/css">
+</head>
+
+<%OperadorVO operador = (OperadorVO) session.getAttribute(GlobalConstants.OPERADOR_INFO);%>
+
+<body>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td width="100%" class="barra">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="49%" rowspan="2" valign="middle" class="fontCertdigital">&nbsp;&nbsp;&nbsp;Certdigital</td>
+				<td width="43%" height="61" valign="bottom" class="fontVerdana">
+				<script language="JavaScript">
+				//<!--
+				var data 	= new Date();
+				dia_semana	= data.getDay();
+				dia      	= data.getDate();
+				mes      	= data.getMonth();
+				ano      	= data.getFullYear();
+				dias = new Array ('Domingo','Segunda-feira','Ter&ccedil;a-feira','Quarta-feira','Quinta-feira','Sexta-feira','S&aacute;bado');
+				meses = new Array ('Janeiro','Fevereiro','Mar&ccedil;o','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro');
+				document.write(dias[dia_semana],', ',dia,' de ',meses[mes], ' de ', ano);
+				//-->
+				</script>
+			</td>
+			<td width="8%" valign="bottom" class="fontVerdana"><a
+				href="login.do?metodo=logout" target="_parent"><img
+				src="_img/_bts/sair.gif" width="39" height="18" border="0"></a></td>
+			</tr>
+			<tr>
+				<td valign="bottom" class="fontVerdana">&nbsp;</td>
+				<td valign="bottom" class="fontVerdana">&nbsp;</td>
+			</tr>
+		</table>
+		</td>
+	</tr>
+</table>
+</body>
+</html>

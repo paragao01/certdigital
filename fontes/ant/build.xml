@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="env-deploy" name="certdigital">
+	<!--
+  VARIAVEIS E PREPARO DE AMBIENTE
+  -->
+
+	<property name="app.name" value="certdigital" />
+	<property name="compile.dir" value="../build" />
+	<property name="deploy.dir" value="../deploy" />
+	<property name="jars.dir" value="../web/WEB-INF/lib" />
+	<property name="war.dir" value="../../war" />
+	<property name="lib.dir" value="../lib" />
+	<property name="classes.dir" value="../classes" />
+	<property name="apaga.class" value="${classes.dir}/br" />
+	<property name="src.dir" value="../src" />
+	<property name="web.dir" value="../web" />
+	<property name="WEB-INF.dir" value="${web.dir}/WEB-INF" />
+
+	<target name="base-prepare">
+		<mkdir dir="${classes.dir}" />
+		<mkdir dir="${deploy.dir}" />
+	</target>
+
+	<path id="base.path">
+		<fileset dir="${lib.dir}">
+			<include name="*.jar" />
+			<include name="*.zip" />
+		</fileset>
+	</path>
+
+	<target name="base-compile">
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| Apagando os .class por causa do git               |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<echo></echo>
+		
+		<delete dir="${apaga.class}" />
+		
+		<echo></echo>
+		<echo></echo>
+		<echo></echo>
+			
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| C O M P I L I N G                                 |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<javac destdir="${classes.dir}" debug="on" deprecation="on" optimize="on" listfiles="yes" classpathref="base.path">
+			<src path="${src.dir}" />
+		</javac>
+	</target>
+
+
+	<target depends="base-prepare,base-compile" name="war">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| W A R                                             |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+
+		<war destfile="${deploy.dir}/${app.name}.war" webxml="${WEB-INF.dir}/web.xml">
+			<fileset dir="${web.dir}" includes="**/*.*" excludes="**/web.xml" />
+
+			<classes dir="${classes.dir}" />
+		</war>
+	</target>
+
+	<target depends="war" name="env-deploy">
+
+		<echo>+---------------------------------------------------+</echo>
+		<echo>|                                                   |</echo>
+		<echo>| D E P L O Y                                       |</echo>
+		<echo>|                                                   |</echo>
+		<echo>+---------------------------------------------------+</echo>
+		<echo> ${war.dir} </echo>
+		<copy todir="${war.dir}">
+			<fileset dir="${deploy.dir}">
+				<include name="${app.name}.war" />
+			</fileset>
+		</copy>
+		<delete file="${deploy.dir}/${app.name}.war" />
+	</target>
+
+
+	<target depends="" name="env-undeploy">
+		<delete file="${war.dir}/${app.name}.war" />
+	</target>
+
+</project>

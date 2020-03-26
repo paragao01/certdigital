@@ -1,0 +1,42 @@
+DB2 Database Configuration
+IBM's DB2 Universal Database is a full-featured, robust, scalable, and easy-to-use database server that may be used on Linux, UNIX, and Windows platforms.
+
+We begin by adding its driver to the CLASSPATH: copy db2java.zip to the /server/default/lib directory. To configure the JBoss server with the DB2 data source, copy /docs/examples/jca/db2-ds.xml to the /server/default/deploy directory.
+
+Next we modify the db2-ds.xml configuration file, by setting <driver-class/> to COM.ibm.db2.jdbc.app.DB2Driver and <connection-url/> to jdbc:db2:<database>, where <database> is the DB2 database name. 
+
+Then we modify standardjaws.xml (or jaws.xml) to set <datasource> and <type-mapping>.
+
+<jaws>
+   <datasource>java:/DB2DS</datasource>
+   <type-mapping>DB2</type-mapping>
+</jaws>
+And standardjbosscmp-jdbc.xml (or jbosscmp-jdbc.xml):
+
+<jbosscmp-jdbc>
+   <defaults>
+      <datasource>java:/DB2DS</datasource>
+      <datasource-mapping>DB2</datasource-mapping>
+   </defaults>
+</jbosscmp-jdbc>
+Finally, we add the following <application-policy/> element to login-config.xml:
+
+<application-policy name = "DB2DbRealm"> 
+   <authentication> 
+      <login-module code =  
+  "org.jboss.resource.security.ConfiguredIdentityLoginModule"
+                           flag = "required"> 
+         <module-option name =  
+"principal">sa</module-option>
+         <module-option name =  
+"userName">sa</module-option> 
+         <module-option name =  
+"password"></module-option> 
+         <module-option name ="managedConnectionFactoryName">  
+                   jboss.jca:service=LocalTxCM,name=DB2DS 
+         </module-option> 
+      </login-module> 
+   </authentication> 
+</application-policy>
+These configuration changes allow us to use DB2 with JBoss.
+

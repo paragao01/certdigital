@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.1//EN" "http://jakarta.apache.org/struts/dtds/struts-config_1_1.dtd">
+<struts-config>
+
+
+    <!-- Action Forms -->
+    <form-beans>
+        <form-bean name="certdigitalForm" type="br.certdigital.shared.web.CertdigitalForm" />
+    </form-beans>
+
+
+    <!-- Global Exceptions -->
+    <global-exceptions>
+        <exception handler="br.certdigital.shared.struts.GenericExceptionHandler" key="falha.sistema" path="/APP_TEMPLATES/mensagem.jsp" type="java.lang.Exception" />
+        <exception handler="br.certdigital.shared.struts.GenericExceptionHandler" key="falha.banco.dados" path="/APP_TEMPLATES/databaseExceptionMessage.jsp" type="br.certdigital.shared.exception.DatabaseException" />
+    </global-exceptions>
+
+
+    <global-forwards>
+    	<forward name="falha" path="/APP_TEMPLATES/mensagem.jsp" />
+        <forward name="mensagem" path="/APP_TEMPLATES/mensagem.jsp" />
+        <forward name="login" path="login.jsp" redirect="false" />
+        <forward name="index" path="/index.jsp" redirect="false" />
+        <forward name="accessDenied" path="/accessDenied.jsp" redirect="false" />
+    </global-forwards>
+
+    <!-- Action Mappings -->
+    <action-mappings>
+	
+	<!-- Login -->
+    <action path="/login" parameter="metodo" type="br.certdigital.web.LoginAction" name="certdigitalForm" scope="request" validate="false" input="/login.jsp">
+    </action>
+    
+    <!-- Pesquisas Genericas -->
+ 	<action path="/pesquisar" parameter="metodo" type="br.certdigital.web.PesquisaAction" name="certdigitalForm" scope="request" validate="false" input="/popPesquisar.jsp">
+    </action>
+	
+	<!-- Entidade -->
+	<action path="/pesquisaEntidade" parameter="metodo" type="br.certdigital.web.EntidadeAction" name="certdigitalForm" scope="request" validate="false" input="/pesquisaEntidade.jsp">
+	    </action>
+	<action path="/incluirEntidade" parameter="metodo" type="br.certdigital.web.EntidadeAction" name="certdigitalForm" scope="request" validate="false" input="/incluirEntidade.jsp">
+		<exception key="entidade.CNPJ.ja.existe" 
+		   path="/incluirEntidade.jsp" type="br.certdigital.exception.CNPJAlreadyExistsException" handler="br.certdigital.shared.struts.GenericExceptionHandler"/>
+	    <forward name="sucesso" path="/manutencaoEntidade.do?metodo=pesquisarEntidade" redirect="false" />
+	</action>        
+	<action path="/manutencaoEntidade" parameter="metodo" type="br.certdigital.web.EntidadeAction" name="certdigitalForm" scope="request" validate="false" input="/manutencaoEntidade.jsp">
+		<exception key="certdigital.CNPJ.ja.existe" path="/manutencaoEntidade.jsp" type="br.certdigital.exception.CNPJAlreadyExistsException" handler="br.certdigital.shared.struts.GenericExceptionHandler" />
+	 	<forward name="sucesso" path="/pesquisaEntidade.do?metodo=pesquisar" redirect="false" />
+		<forward name="incluir" path="/incluirEntidade.do?metodo=prepararFiltro" redirect="false" />
+	</action>
+	
+	<!-- Empresa -->
+ 	<action path="/pesquisaEmpresa" parameter="metodo" type="br.certdigital.web.EmpresaAction" name="certdigitalForm" scope="request" validate="false" input="/pesquisaEmpresa.jsp">
+ 		<forward name="listarEmpresas" path="/listarEmpresas.jsp" redirect="false" />
+    </action>
+ 	<action path="/incluirEmpresa" parameter="metodo" type="br.certdigital.web.EmpresaAction" name="certdigitalForm" scope="request" validate="false" input="/incluirEmpresa.jsp">
+	    <forward name="sucesso" path="/manutencaoEmpresa.do?metodo=prepararFiltro" redirect="false" />
+    </action>            
+ 	<action path="/manutencaoEmpresa" parameter="metodo" type="br.certdigital.web.EmpresaAction" name="certdigitalForm" scope="request" validate="false" input="/manutencaoEmpresa.jsp">
+	    <forward name="sucesso" path="/manutencaoEmpresa.do?metodo=prepararFiltro" redirect="false" />
+	    <forward name="incluir" path="/incluirEmpresa.do?metodo=prepararPesquisa" redirect="false" />
+    </action>        
+
+	<!-- Produto -->
+ 	<action path="/pesquisaProduto" parameter="metodo" type="br.certdigital.web.ProdutoAction" name="certdigitalForm" scope="request" validate="false" input="/pesquisaProduto.jsp">
+ 		<forward name="listarProduto" path="/listarProduto.jsp" redirect="false" />
+    </action>
+ 	<action path="/incluirProduto" parameter="metodo" type="br.certdigital.web.ProdutoAction" name="certdigitalForm" scope="request" validate="false" input="/incluirProduto.jsp">
+	    <forward name="sucesso" path="/manutencaoProduto.do?metodo=prepararFiltro" redirect="false" />
+    </action>            
+ 	<action path="/manutencaoProduto" parameter="metodo" type="br.certdigital.web.ProdutoAction" name="certdigitalForm" scope="request" validate="false" input="/manutencaoProduto.jsp">
+	    <forward name="sucesso" path="/manutencaoProduto.do?metodo=prepararFiltro" redirect="false" />
+	    <forward name="incluir" path="/incluirProduto.do?metodo=prepararPesquisa" redirect="false" />
+    </action>        
+
+	<!-- Preco -->
+ 	<action path="/pesquisaPreco" parameter="metodo" type="br.certdigital.web.PrecoAction" name="certdigitalForm" scope="request" validate="false" input="/pesquisaPreco.jsp">
+ 		<forward name="listarPreco" path="/listarPreco.jsp" redirect="false" />
+    </action>
+ 	<action path="/incluirPreco" parameter="metodo" type="br.certdigital.web.PrecoAction" name="certdigitalForm" scope="request" validate="false" input="/incluirPreco.jsp">
+	    <forward name="sucesso" path="/manutencaoPreco.do?metodo=prepararFiltro" redirect="false" />
+    </action>            
+ 	<action path="/manutencaoPreco" parameter="metodo" type="br.certdigital.web.PrecoAction" name="certdigitalForm" scope="request" validate="false" input="/manutencaoPreco.jsp">
+	    <forward name="sucesso" path="/manutencaoPreco.do?metodo=prepararFiltro" redirect="false" />
+	    <forward name="incluir" path="/incluirPreco.do?metodo=prepararPesquisa" redirect="false" />
+    </action>        
+
+	<!-- Operador -->
+ 	<action path="/pesquisaOperador" parameter="metodo" type="br.certdigital.web.OperadorAction" name="certdigitalForm" scope="request" validate="false" input="/pesquisaOperador.jsp">
+ 		<forward name="listarOperadores" path="/listarOperadores.jsp" redirect="false" />
+    </action>
+ 	<action path="/incluirOperador" parameter="metodo" type="br.certdigital.web.OperadorAction" name="certdigitalForm" scope="request" validate="false" input="/incluirOperador.jsp">
+	    <forward name="sucesso" path="/manutencaoOperador.do?metodo=pesquisarOperador" redirect="false" />
+	    <forward name="definirRegrasAcesso" path="/incluirRegrasAcesso.jsp" redirect="false" />
+    </action>            
+ 	<action path="/manutencaoOperador" parameter="metodo" type="br.certdigital.web.OperadorAction" name="certdigitalForm" scope="request" validate="false" input="/manutencaoOperador.jsp">
+	    <forward name="sucesso" path="/manutencaoOperador.do?metodo=pesquisarOperador" redirect="false" />
+	    <forward name="incluir" path="/incluirOperador.do?metodo=prepararFiltro" redirect="false" />
+	    <forward name="definirRegrasAcesso" path="/manutencaoRegrasAcesso.jsp" redirect="false" />
+    </action>        
+
+	<!-- Certificado -->
+ 	<action path="/pesquisaCertificado" parameter="metodo" type="br.certdigital.web.CertificadoAction" name="certdigitalForm" scope="request" validate="false" input="/pesquisaCertificado.jsp">
+ 		<forward name="listarCertificado" path="/listarCertificados.jsp" redirect="false" />
+    </action>
+ 	<action path="/incluirCertificado" parameter="metodo" type="br.certdigital.web.CertificadoAction" name="certdigitalForm" scope="request" validate="false" input="/incluirCertificado.jsp">
+	    <forward name="sucesso" path="/manutencaoCertificado.do?metodo=prepararFiltro" redirect="false" />
+    </action>            
+ 	<action path="/manutencaoCertificado" parameter="metodo" type="br.certdigital.web.CertificadoAction" name="certdigitalForm" scope="request" validate="false" input="/manutencaoCertificado.jsp">
+	    <forward name="sucesso" path="/manutencaoCertificado.do?metodo=prepararFiltro" redirect="false" />
+	    <forward name="incluir" path="/incluirCertificado.do?metodo=prepararPesquisa" redirect="false" />
+    </action>        
+
+	<!-- Consultar Certificado -->
+ 	<action path="/pesquisaConsultarCertificado" parameter="metodo" type="br.certdigital.web.ConsultarAction" name="certdigitalForm" scope="request" validate="false" input="/pesquisaConsultarCertificado.jsp">
+ 		<forward name="listarConsultarCertificado" path="/listarConsultarCertificados.jsp" redirect="false" />
+    </action>
+    <action path="/imprimirConsultarCertificado" parameter="metodo" type="br.certdigital.web.ConsultarAction" name="certdigitalForm" scope="request" validate="false" input="/imprimirConsultarCertificado.jsp">
+    </action>
+    
+	<!-- Consultar Tabela de Preco -->
+ 	<action path="/consultarTabelaPreco" parameter="metodo" type="br.certdigital.web.ConsultarAction" name="certdigitalForm" scope="request" validate="false" input="/listarTabelaPreco.jsp">
+    </action>
+ 	<action path="/imprimirTabelaPreco" parameter="metodo" type="br.certdigital.web.ConsultarAction" name="certdigitalForm" scope="request" validate="false" input="/imprimirTabelaPreco.jsp">
+    </action>
+    
+	<!-- Consultar Faturamento -->
+ 	<action path="/consultarFaturamento" parameter="metodo" type="br.certdigital.web.ConsultarAction" name="certdigitalForm" scope="request" validate="false" input="/filtroConsultaCertificado.jsp">
+		<forward name="listar" path="/listarConsultaCertificado.jsp" redirect="false" />
+    </action>
+              
+    </action-mappings>
+
+    <!-- Controller -->
+    <!--
+    <controller locale="true" />
+    -->
+    <controller processorClass="br.certdigital.shared.security.CertdigitalRequestProcessor" />
+
+
+    <!-- Message Resources -->
+    <message-resources parameter="ApplicationResources" null="false" />
+
+
+</struts-config>

@@ -1,0 +1,152 @@
+/* CSS Document */
+
+body {
+	background-color: #FFFFFF;
+	margin-left: 0px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+#header {
+	position:relative;
+	width:750px;
+	height:73px;
+	left: 0px;
+	top: 0px;
+}
+#logo {
+    position:absolute; 
+	width:200px; 
+	height:73px;
+	left: 0px;
+	top: 0px;
+}
+.barra {
+ 	background-image:url(../_img/barra1.jpg);
+ 	background-repeat: no-repeat;
+ 	background-size: cover;
+}
+#meio {
+	position:absolute;
+	width:780px;
+}
+#leftLogin {
+    position:absolute;
+	width: 400px;
+	left: 10px;
+	top:2px;
+
+}
+#left {
+    position:absolute;
+	width: 177px;
+	top:2px;
+
+}
+#topMenu {
+    position:absolute;
+	width:177px;
+	top: 02px;
+	left: 2px;
+}
+#meioMenu {
+    position:absolute;
+	width:177px;
+	top: 22px;
+	left: 2px;
+}
+#centerLogin {
+    position:absolute;
+	width: 305px;
+	height: 330px;
+	left: 430px;
+	top:75px;
+}
+#top {
+    position:absolute;
+}
+#meioCx {
+    position:absolute;
+	background-image:url(../_img/meio.gif);
+	width:303px;
+	height: 250px;
+	top: 22px;
+	left: 0px;
+}
+#titLog {
+   position:absolute;
+   left: 50px;
+}
+#peCx {
+    position:absolute;
+	width:303px;
+	top: 221px;
+	left: 0px;
+	top:252px;
+}
+#txtTit {
+    position:absolute;
+	top: 23px;
+	left:32px;
+	width:248px;
+	font-family:Verdana;
+	font-size:12px;
+	font-weight:bold;
+	color:#FFCC00;
+	text-align:center;
+}
+#tabLogin {
+    position:absolute;
+	left:17px;
+	width: 80px;
+	height: 14px;
+	top:58px;
+}
+#text1 {
+    position:absolute;
+	top: 20px;
+	left: 2px;
+	width: 414px;
+	background-image:url(../_img/meioIcoAtencao.gif);
+	padding-left:10px;
+
+}
+#titText {
+    position:absolute;
+	width:423px;
+	height: 20px;
+	left: 2px;
+	padding-left:0px;
+}
+#telas {
+    position: absolute;
+	left: 185px;
+	top:4px;
+	width: 595px;
+	height:50px;
+}
+.fontVerdana {
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+.fontVerdanaBold {
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: bold;
+	color: #000000;
+}
+.fontVerdanaMenu {
+
+	font-family: Verdana;
+	font-size: 11px;
+	font-weight: normal;
+	color: #000000;
+}
+
+@media print { 
+	#noprint, .no-print { display:none !important;} 
+	/*@page{size: auto;margin: 2mm;}*/
+	
+}
+
