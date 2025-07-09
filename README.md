@@ -185,8 +185,8 @@ certdigital/
 ---
 
 **Responsável Técnico:**  
-Paulo César Pires de Aragão
-paragao01@gmail.com
+Paulo César Pires de Aragão  
+paragao01@gmail.com  
 (21) 98272-9030
 
 ---
