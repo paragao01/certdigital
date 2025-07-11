@@ -173,6 +173,50 @@ certdigital/
 
 ---
 
+# CertDigital - Deploy em Containers
+
+Este projeto pode ser executado facilmente em containers Docker, incluindo a aplicação Java (Tomcat) e o banco de dados PostgreSQL.
+
+## Pré-requisitos
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/install/)
+
+## Passos para Deploy
+
+1. **Clone o repositório:**
+   ```bash
+   git clone <repo-url>
+   cd certdigital
+   ```
+
+2. **Build e deploy dos containers:**
+   ```bash
+   docker-compose up --build
+   ```
+   Isso irá:
+   - Subir o banco PostgreSQL com a estrutura definida em `documentos/estrutura.sql`.
+   - Buildar a aplicação Java com Ant e rodar no Tomcat.
+
+3. **Acessar a aplicação:**
+   - Acesse: [http://localhost:8080/certdigital](http://localhost:8080/certdigital)
+
+4. **Banco de Dados:**
+   - Host: `localhost`
+   - Porta: `5432`
+   - Banco: `certdigital`
+   - Usuário: `certdig`
+   - Senha: `certdig!1234`
+
+## Observações
+- O build do projeto é feito automaticamente no container.
+- O script SQL é executado apenas no primeiro start do banco.
+- Se alterar o SQL, remova o volume do banco para reexecutar a estrutura:
+  ```bash
+  docker-compose down -v
+  docker-compose up --build
+  ```
+
+---
 ## Referências e Contatos
 
 - **Documentação Struts:**  
@@ -184,11 +228,14 @@ certdigital/
 
 ---
 
-**Responsável Técnico:**  
-Paulo César Pires de Aragão  
-paragao01@gmail.com  
-(21) 98272-9030
+  **Responsável Técnico:**  
+  Paulo César Pires de Aragão  
+  paragao01@gmail.com  
+  (21) 98272-9030
 
 ---
 
 > Esta documentação foi gerada automaticamente a partir da análise da estrutura do projeto. Para detalhes específicos de regras de negócio, consulte os arquivos de código-fonte em `fontes/src/br/certdigital/`. 
+---
+
+Dúvidas? Abra uma issue! 

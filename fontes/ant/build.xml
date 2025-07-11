@@ -8,7 +8,7 @@
 	<property name="compile.dir" value="../build" />
 	<property name="deploy.dir" value="../deploy" />
 	<property name="jars.dir" value="../web/WEB-INF/lib" />
-	<property name="war.dir" value="../../war" />
+	<property name="war.dir" value="../war" />
 	<property name="lib.dir" value="../lib" />
 	<property name="classes.dir" value="../classes" />
 	<property name="apaga.class" value="${classes.dir}/br" />

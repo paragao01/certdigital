@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: certdigital-db
+    environment:
+      POSTGRES_DB: certdigital
+      POSTGRES_USER: certdig
+      POSTGRES_PASSWORD: certdig!1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./documentos/estrutura.sql:/docker-entrypoint-initdb.d/estrutura.sql
+    networks:
+      - certdigital_net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U certdig"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: certdigital-app
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - certdigital_net
+    environment:
+      DB_HOST: certdigital-db
+      DB_PORT: 5432
+      POSTGRES_DB: certdigital
+      POSTGRES_USER: certdig
+      POSTGRES_PASSWORD: certdig!1234
+    ports:
+      - "8080:8080"
+    restart: unless-stopped
+
+networks:
+  certdigital_net:
+    name: certdigital_net
+    driver: bridge
+
+

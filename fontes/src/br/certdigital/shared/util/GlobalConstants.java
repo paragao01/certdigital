@@ -7,7 +7,7 @@ public class GlobalConstants {
 	public static String DRV = "org.postgresql.Driver";
 	
 	//Ambiente de Desenvolvimento
-    public static String URL = "jdbc:postgresql://localhost:5432/certdigital";	//Acesso Postgree
+    public static String URL = "jdbc:postgresql://certdigital-db:5432/certdigital";	//Acesso Postgree
 	public static String PWR = "certdig!1234";									//Acesso Postgree
 	
 	/*/Ambiente de Producao

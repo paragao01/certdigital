@@ -40,7 +40,7 @@ public abstract class BaseDAO {
 			return linkBanco;
 		} catch (SQLException ex) {
 			log.error("Erro no acesso a base de dados : " + ex.getMessage());
-			throw new DAOException("Erro no acesso a base de dados : " + ex.getMessage());
+			throw new DAOException("Erro no acesso a base de dados : " + URL+"--->"+ ex.getMessage());
 		} catch (ClassNotFoundException e) {
 			log.error("Erro no look up :  " + e.getMessage());
 			throw new DAOException("Erro no look up :  " + e.getMessage());			
