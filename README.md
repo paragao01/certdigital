@@ -236,9 +236,3 @@ Este projeto pode ser executado facilmente em containers Docker, incluindo a apl
 ---
 
 > Esta documentação foi gerada automaticamente a partir da análise da estrutura do projeto. Para detalhes específicos de regras de negócio, consulte os arquivos de código-fonte em `fontes/src/br/certdigital/`. 
-<<<<<<< HEAD
----
-
-Dúvidas? Abra uma issue! 
-=======
->>>>>>> 11b9932e8485cd8f79cf47d3d9c7708e360bde6e
