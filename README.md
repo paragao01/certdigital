@@ -1,4 +1,4 @@
-# CertDigital
+# certdigital
 
 Sistema legado para administração de certificados digitais.
 
@@ -21,7 +21,7 @@ Sistema legado para administração de certificados digitais.
 
 ## Visão Geral do Sistema
 
-O **CertDigital** é um sistema legado para administração de certificados digitais, desenvolvido em Java 8, utilizando o framework Struts, rodando em um servidor Tomcat e integrado a um banco de dados PostgreSQL. Seu objetivo é gerenciar entidades, operadores, empresas e certificados digitais, fornecendo funcionalidades de cadastro, consulta, manutenção e geração de relatórios.
+O **certdigital** é um sistema legado para administração de certificados digitais, desenvolvido em Java 8, utilizando o framework Struts, rodando em um servidor Tomcat e integrado a um banco de dados PostgreSQL. Seu objetivo é gerenciar entidades, operadores, empresas e certificados digitais, fornecendo funcionalidades de cadastro, consulta, manutenção e geração de relatórios.
 
 ---
 
@@ -236,6 +236,9 @@ Este projeto pode ser executado facilmente em containers Docker, incluindo a apl
 ---
 
 > Esta documentação foi gerada automaticamente a partir da análise da estrutura do projeto. Para detalhes específicos de regras de negócio, consulte os arquivos de código-fonte em `fontes/src/br/certdigital/`. 
+<<<<<<< HEAD
 ---
 
 Dúvidas? Abra uma issue! 
+=======
+>>>>>>> 11b9932e8485cd8f79cf47d3d9c7708e360bde6e
